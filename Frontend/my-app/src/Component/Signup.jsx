@@ -1,11 +1,12 @@
 
 import React, { useState } from "react";
-import  "../CSS/form.css"
-let obj={  
+
+let obj={
+    name:"",
     email:"",
     password:"",
 }
-export  const Login =()=>{
+export  const Signup =()=>{
 const [data,setData]=useState(obj)
 
 const handelChange=(e)=>{
@@ -18,10 +19,13 @@ e.preventDefault()
 }
 
 console.log(data)
-return <div className="Box">
-     
+return <div>
+    
     <form onSubmit={handleSubmit}>
-    <h1>Login </h1>
+      <label>
+        Name:
+        <input  name="name" type="text"  onChange={handelChange}/>
+      </label>
       <label>
         Email:
         <input  name="email" type="email"   onChange={handelChange}/>
