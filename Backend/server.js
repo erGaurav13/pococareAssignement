@@ -2,8 +2,10 @@ const express = require("express");
 const cors=require("cors")
 const { connect } = require("./src/MongoDb/mongodb.connect");
 const UserRouter = require("./src/Routes/UserRoutes/user.Routes");
-const PORT = 8080;
+const dotenv = require('dotenv');
+dotenv.config();
 
+const PORT = process.env.PORT ||8080;
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
