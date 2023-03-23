@@ -1,13 +1,25 @@
 const express = require("express");
-const PORT=8080;
+const { connect } = require("./src/MongoDb/mongodb.connect");
+const UserRouter = require("./src/Routes/UserRoutes/user.Routes");
+const PORT = 8080;
 
-const app= express();
+const app = express();
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 
-app.get("/",(req,res)=>{
-    return res.send("Hi")
-})
+// routing table
+app.use("/user", UserRouter);
 
-app.listen(PORT,()=>{
-console.log(`server started at ${PORT}`)
-})
+app.get("/", (req, res) => {
+  return res.send("Hi");
+});
+
+app.listen(PORT, async () => {
+  try {
+    await connect;
+  } catch (e) {
+    console.log(e);
+  }
+  console.log(`server started at ${PORT}`);
+});
